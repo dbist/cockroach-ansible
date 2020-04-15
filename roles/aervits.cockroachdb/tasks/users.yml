@@ -1,0 +1,15 @@
+---
+# user tasks file for aervits.cockroachdb
+
+- name: Add service user {{ service_users }}
+  user:
+    name: "{{ item }}"
+    comment: "{{ item }} service account user"
+  with_items: "{{ service_users }}"
+
+- name: Change file ownership, group and permissions for /data volume
+  file:
+    path: /data
+    owner: cockroach
+    group: cockroach
+    mode: '0700'

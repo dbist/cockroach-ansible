@@ -1,0 +1,30 @@
+---
+# limit tasks file for aervits.cockroachdb
+
+  - name: Add or modify soft nofile limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: soft
+      limit_item: nofile
+      value: '1000000'
+
+  - name: Add or modify hard nofile limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: hard
+      limit_item: nofile
+      value: '1000000'
+
+  - name: Add or modify soft nproc limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: soft
+      limit_item: nproc
+      value: '128000'
+
+  - name: Add or modify hard nproc limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: hard
+      limit_item: nproc
+      value: '128000'
