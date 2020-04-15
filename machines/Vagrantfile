@@ -32,10 +32,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
  
   # Provision 2GB and 2 vcpu for each machine as per recommended
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 2024
-    v.cpus = 2
-    v.linked_clone = true
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 2024
+    vb.cpus = 2
+    vb.linked_clone = true
+
+    # WIP, this approach would not need vagrant-persistent-storage plugin
+    #file_to_disk = './large_disk.vdi'
+    #  unless File.exist?(file_to_disk)
+    #    vb.customize ['createhd', '--filename', file_to_disk, '--size', 10 * 1024]
+    #  end
+    #  vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+
+    # Provision a second disk
+    config.persistent_storage.enabled = true
+    config.persistent_storage.size = 5000
+    config.persistent_storage.mountname = 'data'
+    config.persistent_storage.filesystem = 'ext4'
+    config.persistent_storage.mountpoint = '/dev'
+    config.persistent_storage.volgroupname = 'cockroachdb'
+    config.persistent_storage.partition = false
+    config.persistent_storage.variant = 'Fixed'
   end
 
   # roach1
@@ -43,6 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     roach1.vm.hostname = "roach1.example.com"
     roach1.vm.network :private_network, ip: "192.168.60.4"
     roach1.hostmanager.aliases = %w(roach1.localdomain roach1.example.com)
+    roach1.persistent_storage.location = "./roach1.vdi"
   end
 
   # roach2
@@ -50,6 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     roach2.vm.hostname = "roach2.example.com"
     roach2.vm.network :private_network, ip: "192.168.60.5"
     roach2.hostmanager.aliases = %w(roach2.localdomain roach2.example.com)
+    roach2.persistent_storage.location = "./roach2.vdi"
   end
 
   # roach3
@@ -57,6 +76,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     roach3.vm.hostname = "roach3.example.com"
     roach3.vm.network :private_network, ip: "192.168.60.6"
     roach3.hostmanager.aliases = %w(roach3.localdomain roach3.example.com)
+    roach3.persistent_storage.location = "./roach3.vdi"
   end
 
   # Disable automatic box update checking. If you disable this, then

@@ -2,3 +2,8 @@
 - hosts: all
   become: yes 
   tasks:
+  - name: Create an ext4 filesystem for CockroachDB
+    filesystem:
+      fstype: ext4
+      dev: /dev/cockroachdb/data
+      opts: -cc
