@@ -1,2 +1,14 @@
 ---
 # vars file for aervits.cockroachdb
+
+
+"binary_version": {
+    "full": "cockroach-v19.2.6.linux-amd64",
+    "major": 19,
+    "minor": 2,
+    "revision": 6,
+    "version_string": "19.2.6",
+    "rc": ""
+}
+
+binary_url: "https://binaries.cockroachdb.com/{{binary_version.full}}.tgz"
