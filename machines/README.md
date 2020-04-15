@@ -9,4 +9,5 @@ roach1.example.com | CHANGED | rc=0 >>
 roach1
 ```
 
-
+# Destroy machines parallely
+`vagrant destroy --parallel`

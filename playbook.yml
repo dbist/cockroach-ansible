@@ -7,3 +7,12 @@
       fstype: ext4
       dev: /dev/cockroachdb/data
       opts: -cc
+
+  - name: Mount up device by label
+    mount:
+      path: /data
+      src: /dev/cockroachdb/data
+      fstype: ext4
+      opts: defaults,nofail,noatime,discard
+      passno: '2'
+      state: present

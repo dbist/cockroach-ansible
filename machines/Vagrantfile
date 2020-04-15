@@ -49,7 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.persistent_storage.size = 5000
     config.persistent_storage.mountname = 'data'
     config.persistent_storage.filesystem = 'ext4'
-    config.persistent_storage.mountpoint = '/dev'
+    config.persistent_storage.mountpoint = '/data'
     config.persistent_storage.volgroupname = 'cockroachdb'
     config.persistent_storage.partition = false
     config.persistent_storage.variant = 'Fixed'
