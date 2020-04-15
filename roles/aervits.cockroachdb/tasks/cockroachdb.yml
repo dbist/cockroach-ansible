@@ -1,0 +1,23 @@
+---
+# cockroachdb tasks file for aervits.cockroachdb
+
+- name: Download cockroachdb {{ binary_version.version_string }} release
+  get_url:
+    url: "{{ binary_url }}"
+    dest: "/tmp/{{ binary_version.full }}.tgz"
+
+- name: Extract binary release
+  unarchive:
+    src: "/tmp/{{ binary_version.full }}.tgz"
+    dest: "/usr/local/bin/"
+    remote_src: yes
+    keep_newer: yes
+    creates: "/usr/local/bin/{{ binary_version.full }}"
+
+- name: Move executable to path
+  command: mv "/usr/local/bin/{{ binary_version.full }}/cockroach" "/usr/local/bin/"
+
+- name: Remove junk directory
+  file:
+    path: "/usr/local/bin/{{ binary_version.full }}"
+    state: absent
