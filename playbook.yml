@@ -2,13 +2,13 @@
 - hosts: all
   become: yes 
   tasks:
-  - name: Create an ext4 filesystem for CockroachDB
+  - name: Create an ext4 filesystem for CockroachDB data
     filesystem:
       fstype: ext4
       dev: /dev/cockroachdb/data
       opts: -cc
 
-  - name: Mount up device by label
+  - name: Mount a device for CockroachDB data
     mount:
       path: /data
       src: /dev/cockroachdb/data
@@ -16,3 +16,44 @@
       opts: defaults,nofail,noatime,discard
       passno: '2'
       state: present
+
+  - name: Add user 'cockroach'
+    user:
+      name: cockroach
+      comment: Cockroach Service Account User
+      uid: '1100'
+
+  - name: Change file ownership, group and permissions for /data volume
+    file:
+      path: /data
+      owner: cockroach
+      group: cockroach
+      mode: '0700'
+
+  - name: Add or modify soft nofile limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: soft
+      limit_item: nofile
+      value: '1000000'
+
+  - name: Add or modify hard nofile limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: hard
+      limit_item: nofile
+      value: '1000000'
+
+  - name: Add or modify soft nproc limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: soft
+      limit_item: nproc
+      value: '128000'
+
+  - name: Add or modify hard nproc limits for CockroachDB
+    pam_limits:
+      domain: cockroach
+      limit_type: hard
+      limit_item: nproc
+      value: '128000'
