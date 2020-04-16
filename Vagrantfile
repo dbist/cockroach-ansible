@@ -46,7 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Provision a second disk
     config.persistent_storage.enabled = true
-    config.persistent_storage.size = 5000
+    config.persistent_storage.size = 10000
     config.persistent_storage.mountname = 'data'
     config.persistent_storage.filesystem = 'ext4'
     config.persistent_storage.mountpoint = '/data'
