@@ -9,6 +9,7 @@ set `config.hostmanager.enabled = false` if you don't want to populate /etc/host
 
 TODO:
 
+1. fix disk mounts for `--store`
 1. secure cluster
 2. initialize cluster
 3. start cluster
@@ -29,7 +30,9 @@ roach1.example.com | CHANGED | rc=0 >>
 roach1
 ```
 
-# Destroy machines parallely
+# Destroy machines in parallel
 ```bash
 vagrant destroy --parallel
 ```
+
+# Follow [this guide](https://www.cockroachlabs.com/docs/stable/deploy-cockroachdb-on-premises.html) to deploy CRDB.

@@ -1,12 +1,6 @@
 ---
 # fs tasks file for aervits.cockroachdb
 
-- name: Create an ext4 filesystem for CockroachDB data
-  filesystem:
-    fstype: ext4
-    dev: /dev/cockroachdb/data
-    opts: -cc
-
 - name: Mount a device for CockroachDB data
   mount:
     path: /data
@@ -15,6 +9,12 @@
     opts: defaults,nofail,noatime,discard
     passno: '2'
     state: present
+
+- name: Create an ext4 filesystem for CockroachDB data
+  filesystem:
+    fstype: ext4
+    dev: /dev/cockroachdb/data
+    opts: nodiscard
 
 - name: Change file ownership, group and permissions for /data volume
   file:
