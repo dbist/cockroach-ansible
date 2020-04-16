@@ -4,17 +4,18 @@ Uses the following plugins for convenience
 vagrant-hostmanager
 vagrant-vbguest
 vagrant-persistent-storage
+vagrant-scp
 ```
 set `config.hostmanager.enabled = false` if you don't want to populate /etc/hosts file with node names, may require password.
 
 TODO:
 
 1. fix disk mounts for `--store`
-1. secure cluster
-2. initialize cluster
-3. start cluster
+2. secure cluster (follow this [guide](https://www.cockroachlabs.com/docs/stable/deploy-cockroachdb-on-premises.html))
+2. initialize cluster, (same guide)
+3. start cluster (same guide)
+5. install haproxy (same guide)
 4. load workload (can you make it conditional)?
-5. install haproxy
 
 
 ```bash
@@ -34,5 +35,3 @@ roach1
 ```bash
 vagrant destroy --parallel
 ```
-
-# Follow [this guide](https://www.cockroachlabs.com/docs/stable/deploy-cockroachdb-on-premises.html) to deploy CRDB.
