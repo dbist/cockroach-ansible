@@ -14,3 +14,22 @@ TODO:
 3. start cluster
 4. load workload (can you make it conditional)?
 5. install haproxy
+
+
+```bash
+ansible -i ../inventory.yml east -a "hostname"
+```
+
+```bash
+roach3.example.com | CHANGED | rc=0 >>
+roach3
+roach2.example.com | CHANGED | rc=0 >>
+roach2
+roach1.example.com | CHANGED | rc=0 >>
+roach1
+```
+
+# Destroy machines parallely
+```bash
+vagrant destroy --parallel
+```

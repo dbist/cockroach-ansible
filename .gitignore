@@ -1,4 +1,4 @@
 .DS_Store
-**/machines/*.log
-**/machines/.vagrant
-**/machines/*.vdi
+**/*.log
+**/.vagrant
+**/*.vdi
