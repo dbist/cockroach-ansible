@@ -16,10 +16,10 @@ all:
     prod:
       children:
         east:
-    test:
+    dev:
       hosts:
-        #roach1.example.com:
-        roach1:
+        roach1.example.com:
+        #roach1:
   vars:
     ansible_user: vagrant
     ansible_ssh_private_key_file: ~/.vagrant.d/insecure_private_key
