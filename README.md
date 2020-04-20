@@ -42,5 +42,12 @@ vagrant destroy --parallel
 `ansible-playbook cockroachdb-playbook.yml -i inventory.yml`
 
 # execute against a subset of inventory
-`ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l east`
+```
+ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l prod
+```
+
+# execute against a dev environment
+```
+ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l dev
+```
 
