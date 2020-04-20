@@ -35,3 +35,12 @@ roach1
 ```bash
 vagrant destroy --parallel
 ```
+
+# Define variables in `vars.yml`
+
+# execute against the entire inventory file
+`ansible-playbook cockroachdb-playbook.yml -i inventory.yml`
+
+# execute against a subset of inventory
+`ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l east`
+

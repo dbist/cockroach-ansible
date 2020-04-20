@@ -1,0 +1,5 @@
+---
+# Variables file 'vars.yml' for aervits.cockroachdb playbook
+
+service_users:
+  - cockroach

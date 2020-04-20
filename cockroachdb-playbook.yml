@@ -4,13 +4,12 @@
   roles:
     - aervits.cockroachdb
 
-  vars:
-    service_users:
-       - cockroach
+  vars_files:
+    - vars.yml
 
-#  pre_tasks:
-#    - name: Update apt cache if needed.
-#      apt: update_cache=yes cache_valid_time=3600
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt: update_cache=yes cache_valid_time=3600
 
 #  handlers:
 #    - import_tasks: handlers/handlers.yml
@@ -20,6 +19,5 @@
     - import_tasks: roles/aervits.cockroachdb/tasks/disks.yml
     - import_tasks: roles/aervits.cockroachdb/tasks/limits.yml
     - import_tasks: roles/aervits.cockroachdb/tasks/cockroachdb.yml
-  
   
   
