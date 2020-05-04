@@ -1,0 +1,43 @@
+---
+# secure cockroachdb tasks file for aervits.cockroachdb
+
+- name: create certs dirs
+  file:
+    path: "{{ certs_dir }}/certs"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: '0700'
+
+- name: create the CA directory
+  file:
+    path: "{{ certs_dir }}/my-safe-directory"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: '0700'
+
+- name: create the CA cert and key pair
+  command: cockroach cert create-ca --certs-dir=certs --ca-key=my-safe-directory/ca.key
+  become: yes
+  become_user: vagrant
+  args:
+    creates: "{{ certs_dir }}/my-safe-directory/ca.key"
+
+# this perhaps needs to be done per node on each node, using a single CA
+- name: create a node certificate and key pair
+  command: cockroach cert create-node localhost "{{ ansible_hostname }}" \
+    --certs-dir=certs --ca-key=my-safe-directory/ca.key
+  become: yes
+  become_user: vagrant
+#  become_user: "{{ cockroach_user }}"
+  args:
+    creates: "{{ certs_dir }}/certs/node.crt"
+
+# this will need to be done on a single node, perhaps a client
+- name: create a client cert
+  command: cockroach cert create-client root --certs-dir=certs --ca-key=my-safe-directory/ca.key
+  become: yes
+  become_user: vagrant
+  args:
+    creates: "{{ certs_dir }}/certs/client.root.crt"

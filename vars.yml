@@ -3,3 +3,5 @@
 
 cockroach_user:
   - cockroach
+
+certs_dir: /home/vagrant/
