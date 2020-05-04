@@ -23,14 +23,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  
+
   config.vm.box = "ubuntu/bionic64"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled:true
 
   # Update virtual guest additions
   config.vbguest.auto_update = false
- 
+
   # Provision 2GB and 2 vcpu for each machine as per recommended
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 2024

@@ -50,4 +50,3 @@ ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l prod
 ```
 ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l dev
 ```
-

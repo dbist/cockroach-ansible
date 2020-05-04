@@ -16,6 +16,7 @@
 
 - name: Move executable to path
   command: mv "/usr/local/bin/{{ binary_version.full }}/cockroach" "/usr/local/bin/"
+  changed_when: false
 
 - name: Remove junk directory
   file:
