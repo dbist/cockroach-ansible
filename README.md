@@ -1,3 +1,5 @@
+![ansible-lint](https://github.com/dbist/cockroach-ansible/workflows/ansible-lint/badge.svg?branch=master)
+
 Uses the following plugins for convenience
 
 ```
