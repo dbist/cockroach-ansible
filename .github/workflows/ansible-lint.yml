@@ -19,20 +19,7 @@ jobs:
 
     - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@master
-#      uses: ansible/ansible-lint-action@v4.3.0a0
       with:
-#        targets: |
-#          roles/aervits.kerberos-server
-#          playbooks/kerberos
-#          playbooks/kerberos/playbook.yml
-#          playbooks/kerberos/vars.yml
-#          roles/aervits.kerberos-server/tasks
-#          roles/aervits.kerberos-server/defaults
-#          roles/aervits.kerberos-server/handlers
-#          roles/aervits.kerberos-server/meta
-#          roles/aervits.kerberos-server/templates
-#          roles/aervits.kerberos-server/vars
-#          roles/aervits.kerberos-server/tests
         # [required]
         # Paths to ansible files (i.e., playbooks, tasks, handlers etc..)
         # or valid Ansible directories according to the Ansible role
