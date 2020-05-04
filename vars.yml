@@ -5,3 +5,10 @@ cockroach_user:
   - cockroach
 
 certs_dir: /home/vagrant/
+
+store_dir: /home/vagrant/store
+
+join_members:
+  - roach1.example.com:26257
+  - roach2.example.com:26258
+  - roach3.example.com:26259

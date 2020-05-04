@@ -36,8 +36,25 @@
 
 # this will need to be done on a single node, perhaps a client
 - name: create a client cert
-  command: cockroach cert create-client root --certs-dir=certs --ca-key=my-safe-directory/ca.key
+  command: cockroach cert create-client root --certs-dir=certs \
+    --ca-key=my-safe-directory/ca.key
   become: yes
   become_user: vagrant
   args:
     creates: "{{ certs_dir }}/certs/client.root.crt"
+
+# there must be a better way to handle `--join`, get it from the facts?
+- name: start a node "{{ ansible_hostname }}"
+  command: cockroach start --certs-dir=certs --store="{{ store_dir }}" --listen-addr="{{ ansible_fqdn }}":26257 \
+    --http-addr="{{ ansible_fqdn }}":8080 \
+    --join="{{ join_members[0] }}","{{ join_members[1] }}","{{ join_members[2] }}" --background
+  become: yes
+# cockroach user is unprivileged, Ansible complains, fix to run as cockroach
+  become_user: vagrant
+#  become_user: "{{ cockroach_user }}"
+
+#- name: get inventory hostnames
+#  debug:
+#    msg: "{{ item }}"
+#  with_inventory_hostnames:
+#    - all:roach[1:3].example.com

@@ -18,7 +18,7 @@ TODO:
 3. start cluster (same guide)
 5. install haproxy (same guide)
 4. load workload (can you make it conditional)?
-
+6. run as `cockroach` user
 
 ```bash
 ansible -i ../inventory.yml east -a "hostname"
