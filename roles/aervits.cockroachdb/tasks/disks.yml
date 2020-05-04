@@ -19,6 +19,7 @@
 - name: Change file ownership, group and permissions for /data volume
   file:
     path: /data
-    owner: cockroach
-    group: cockroach
+    owner: "{{ item }}"
+    group: "{{ item }}"
     mode: '0700'
+  with_items: "{{ cockroach_user }}"
