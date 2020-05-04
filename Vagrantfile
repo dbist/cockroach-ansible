@@ -125,6 +125,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "ansible" do |ansible|
   # ansible.playbook = "roles/aervits.cockroachdb/playbook.yml"
     ansible.playbook = "cockroachdb-playbook.yml"
+    ansible.compatibility_mode = "2.0"
   end
 
 end
