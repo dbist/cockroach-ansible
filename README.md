@@ -1,5 +1,11 @@
 ![ansible-lint](https://github.com/dbist/cockroach-ansible/workflows/ansible-lint/badge.svg?branch=master)
 
+REQUIREMENTS:
+
+1. `pip install ansible`
+2. `pip install pre-commit`
+3. `pip install ansible-lint`
+
 Uses the following plugins for convenience
 
 ```
@@ -12,6 +18,7 @@ set `config.hostmanager.enabled = false` if you don't want to populate /etc/host
 
 TODO:
 
+1. use `molecule` for testing
 1. fix disk mounts for `--store`
 2. secure cluster (follow this [guide](https://www.cockroachlabs.com/docs/stable/deploy-cockroachdb-on-premises.html))
 2. initialize cluster, (same guide)
