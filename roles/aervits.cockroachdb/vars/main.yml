@@ -3,11 +3,11 @@
 
 
 "binary_version": {
-    "full": "cockroach-v19.2.6.linux-amd64",
+    "full": "cockroach-v19.1.9.linux-amd64",
     "major": 19,
-    "minor": 2,
-    "revision": 6,
-    "version_string": "19.2.6",
+    "minor": 1,
+    "revision": 9,
+    "version_string": "19.1.9",
     "rc": ""
 }
 

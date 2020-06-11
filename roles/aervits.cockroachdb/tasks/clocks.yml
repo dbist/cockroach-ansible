@@ -1,0 +1,33 @@
+---
+# synchronize clocks tasks file for aervits.cockroachdb
+
+# perhaps replace this with a galaxy role for timesync
+- name: disable timesyncd
+  command: timedatectl set-ntp no
+  become: yes
+  become_user: root
+
+- name: install ntp
+  package:
+    name: ntp
+    state: present
+
+- name: stop service ntpd
+  service:
+    name: ntp
+    state: stopped
+
+- name: sync the clock with Google's NTP server
+  command: ntpd -b time.google.com
+  become: yes
+  become_user: root
+
+- name: start service ntpd
+  service:
+    name: ntp
+    state: started
+
+- name: verify the clock is using Google's NTP server
+  command: ntpd -b time.google.com
+  become: yes
+  become_user: root

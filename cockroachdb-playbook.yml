@@ -18,5 +18,6 @@
     - import_tasks: roles/aervits.cockroachdb/tasks/users.yml
     - import_tasks: roles/aervits.cockroachdb/tasks/disks.yml
     - import_tasks: roles/aervits.cockroachdb/tasks/limits.yml
+    - import_tasks: roles/aervits.cockroachdb/tasks/clocks.yml
     - import_tasks: roles/aervits.cockroachdb/tasks/install_crdb.yml
-    - import_tasks: roles/aervits.cockroachdb/tasks/secure_crdb.yml
+#    - import_tasks: roles/aervits.cockroachdb/tasks/secure_crdb.yml
