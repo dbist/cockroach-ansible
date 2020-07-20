@@ -1,4 +1,7 @@
+# Ansible project to deploy CockroachDB
+
 ![ansible-lint](https://github.com/dbist/cockroach-ansible/workflows/ansible-lint/badge.svg?branch=master)
+![Super Linter](https://github.com/dbist/cockroach-ansible/workflows/Super%20Linter/badge.svg)
 
 REQUIREMENTS:
 
