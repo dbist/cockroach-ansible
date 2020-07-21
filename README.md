@@ -11,7 +11,7 @@ REQUIREMENTS:
 
 Uses the following plugins for convenience
 
-```
+```ruby
 vagrant-hostmanager
 vagrant-vbguest
 vagrant-persistent-storage
@@ -22,13 +22,13 @@ set `config.hostmanager.enabled = false` if you don't want to populate /etc/host
 TODO:
 
 1. use `molecule` for testing
-1. fix disk mounts for `--store`
-2. secure cluster (follow this [guide](https://www.cockroachlabs.com/docs/stable/deploy-cockroachdb-on-premises.html))
-2. initialize cluster, (same guide)
-3. start cluster (same guide)
-5. install haproxy (same guide)
-4. load workload (can you make it conditional)?
-6. run as `cockroach` user
+2. fix disk mounts for `--store`
+3. secure cluster (follow this [guide](https://www.cockroachlabs.com/docs/stable/deploy-cockroachdb-on-premises.html))
+4. initialize cluster, (same guide)
+5. start cluster (same guide)
+6. install haproxy (same guide)
+7. load workload (can you make it conditional)?
+8. run as `cockroach` user
 
 ```bash
 ansible -i ../inventory.yml east -a "hostname"
@@ -43,22 +43,22 @@ roach1.example.com | CHANGED | rc=0 >>
 roach1
 ```
 
-# Destroy machines in parallel
+## Destroy machines in parallel
 ```bash
 vagrant destroy --parallel
 ```
 
-# Define variables in `vars.yml`
+## Define variables in `vars.yml`
 
-# execute against the entire inventory file
+## execute against the entire inventory file
 `ansible-playbook cockroachdb-playbook.yml -i inventory.yml`
 
-# execute against a subset of inventory
-```
+## execute against a subset of inventory
+```python
 ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l prod
 ```
 
-# execute against a dev environment
-```
+## execute against a dev environment
+```python
 ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l dev
 ```
