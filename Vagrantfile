@@ -95,13 +95,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # via 127.0.0.1 to disable public access
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
-
-  # TEST THIS AS THERE IS NO PORT OPEN BETWEEN VMS, TEST WITH TELNET
-  # https://www.vagrantup.com/docs/networking/forwarded_ports
-
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
-  config.vm.network "forwarded_port", guest: 26257, host: 26257
-
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
