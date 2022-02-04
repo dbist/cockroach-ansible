@@ -1,42 +1,43 @@
+---
+
 default_language_version:
     python: python3.9
 
 default_stages: [commit, push]
 
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.1.0
-  hooks:
-    - id: trailing-whitespace
-    - id: check-yaml
-    - id: end-of-file-fixer
-    - id: check-added-large-files
-    - id: check-merge-conflict
-    - id: check-case-conflict
-    - id: check-executables-have-shebangs
-    - id: check-json
-    - id: pretty-format-json
-    - id: detect-private-key
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.1.0
+      hooks:
+          - id: trailing-whitespace
+          - id: check-yaml
+          - id: end-of-file-fixer
+          - id: check-added-large-files
+          - id: check-merge-conflict
+          - id: check-case-conflict
+          - id: check-executables-have-shebangs
+          - id: check-json
+          - id: pretty-format-json
+          - id: detect-private-key
 
-# uncomment when fix the aervits.kerberos-server error, see issues in github
-#- repo: https://github.com/ansible/ansible-lint.git
-#  rev: v5.3.2
-#  hooks:
-#    - id: ansible-lint
-#      name: Ansible-lint
-#      description: This hook runs ansible-lint.
-#      entry: ansible-lint --force-color
-#      language: python
-      # do not pass files to ansible-lint, see:
-      # https://github.com/ansible/ansible-lint/issues/611
-#      pass_filenames: false
-#      always_run: true
+    # uncomment when fix the aervits.kerberos-server error, see issues in github
+    # - repo: https://github.com/ansible/ansible-lint.git
+    #   rev: v5.3.2
+    #   hooks:
+    #     - id: ansible-lint
+    #       name: Ansible-lint
+    #       description: This hook runs ansible-lint.
+    #       entry: ansible-lint --force-color
+    #       language: python
+    # do not pass files to ansible-lint, see:
+    # https://github.com/ansible/ansible-lint/issues/611
+    #       pass_filenames: false
+    #       always_run: true
 
-# uncomment when fix the github issue
-#- repo: https://github.com/adrienverge/yamllint.git
-#  rev: v1.26.3
-#  hooks:
-#    - id: yamllint
-#      files: \.(yaml|yml)$
-#      types: [file, yaml]
-#      entry: yamllint
+    - repo: https://github.com/adrienverge/yamllint.git
+      rev: v1.26.3
+      hooks:
+          - id: yamllint
+            files: \.(yaml|yml)$
+            types: [file, yaml]
+            entry: yamllint
