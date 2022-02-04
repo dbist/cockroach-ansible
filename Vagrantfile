@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
 
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "ubuntu/focal64"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled:true
 

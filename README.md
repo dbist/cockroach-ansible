@@ -6,8 +6,8 @@
 REQUIREMENTS:
 
 1. `pip install ansible`
-2. `pip install pre-commit`
-3. `pip install ansible-lint`
+2. `pip install ansible-lint`
+3. `brew install pre-commit`
 
 Uses the following plugins for convenience
 
@@ -29,6 +29,10 @@ TODO:
 6. install haproxy (same guide)
 7. load workload (can you make it conditional)?
 8. run as `cockroach` user
+
+```bash
+Vagrant up
+```
 
 ```bash
 ansible -i ../inventory.yml east -a "hostname"
@@ -61,4 +65,55 @@ ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l prod
 ## execute against a dev environment
 ```python
 ansible-playbook cockroachdb-playbook.yml -i inventory.yml -l dev
+```
+
+## Vagrant specific
+
+until disks issue with `--store` is not fixed, don't use the argument
+
+```bash
+cockroach start --insecure --listen-addr=roach1.example.com:26257 --http-addr=roach1.example.com:8080 --join=roach1.example.com:26257,roach2.example.com:26257,roach3.example.com:26257 --background
+
+cockroach start --insecure --listen-addr=roach2.example.com:26257 --http-addr=roach2.example.com:8080 --join=roach1.example.com:26257,roach2.example.com:26257,roach3.example.com:26257 --background
+
+cockroach start --insecure --listen-addr=roach3.example.com:26257 --http-addr=roach3.example.com:8080 --join=roach1.example.com:26257,roach2.example.com:26257,roach3.example.com:26257 --background
+```
+
+
+```bash
+vagrant ssh roach1
+```
+
+```bash
+sudo su
+su cockroach
+cd
+cockroach start --insecure --store=/data --listen-addr=roach1.example.com:26257 --http-addr=roach1.example.com:8080 --join=roach1.example.com:26257,roach2.example.com:26257,roach3.example.com:26257 --background
+```
+
+```bash
+vagrant ssh roach2
+```
+
+```bash
+sudo su
+su cockroach
+cd
+cockroach start --insecure --store=/data --listen-addr=roach2.example.com:26257 --http-addr=roach2.example.com:8080 --join=roach1.example.com:26257,roach2.example.com:26257,roach3.example.com:26257 --background
+```
+
+```bash
+vagrant ssh roach3
+```
+
+```bash
+sudo su
+su cockroach
+cd
+cockroach start --insecure --store=/data --listen-addr=roach3.example.com:26257 --http-addr=roach3.example.com:8080 --join=roach1.example.com:26257,roach2.example.com:26257,roach3.example.com:26257 --background
+```
+
+
+```bash
+cockroach init --insecure --host=roach3.example.com:26257
 ```

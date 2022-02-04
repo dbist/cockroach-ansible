@@ -4,7 +4,7 @@
 # perhaps replace this with a galaxy role for timesync
 - name: disable timesyncd
   command: timedatectl set-ntp no
-  become: yes
+  become: true
   become_user: root
 
 - name: install ntp
@@ -19,7 +19,7 @@
 
 - name: sync the clock with Google's NTP server
   command: ntpd -b time.google.com
-  become: yes
+  become: true
   become_user: root
 
 - name: start service ntpd
@@ -29,5 +29,5 @@
 
 - name: verify the clock is using Google's NTP server
   command: ntpd -b time.google.com
-  become: yes
+  become: true
   become_user: root
